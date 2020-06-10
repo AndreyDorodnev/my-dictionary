@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -36,6 +36,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignUp() { 
+
+    const [userName, setUserName] = useState('');
+    const [email,setEmail] = useState('');
+    const [password,setPassword] = useState('');
+
+    onUserNameChange = (event) => {
+        setUserName(event.target.value);
+    }
+    onEmailChange = (event) => {
+        setEmail(event.target.value);
+    }
+    onPassword = (event) => {
+        setPassword(event.target.value);
+    }
+
     const classes = useStyles(); 
     return ( 
     <Container component="main" maxWidth="xs"> 
@@ -48,13 +63,13 @@ export default function SignUp() {
             <form className={classes.form} noValidate={false}> 
                 <Grid container spacing={2}> 
                     <Grid item xs={12}> 
-                        <TextField autoComplete="fname" name="User Name" variant="outlined" required fullWidth id="userName" label="User Name" autoFocus /> 
+                        <TextField value={userName} autoComplete="fname" name="User Name" variant="outlined" required fullWidth id="userName" label="User Name" autoFocus /> 
                     </Grid> 
                     <Grid item xs={12}> 
-                        <TextField variant="outlined" type="email" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" /> 
+                        <TextField value={email} variant="outlined" type="email" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" /> 
                     </Grid> 
                     <Grid item xs={12}> 
-                        <TextField variant="outlined" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" /> 
+                        <TextField value={password} variant="outlined" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" /> 
                     </Grid> 
                     <Grid item xs={12}> 
                         <FormControlLabel control={<Checkbox value="allowExtraEmails" color="primary" />} label="I want to receive inspiration, marketing promotions and updates via email." /> 
