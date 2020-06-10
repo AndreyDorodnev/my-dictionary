@@ -46,16 +46,13 @@ const useStyles = makeStyles((theme) => ({
         display: 'block',
         textAlign: 'center',
     },
+    errorMsg: {
+        color: theme.palette.error.main,
+    }
 }));
     
-const initialValidation = {
-    emailErr: false,
-    passwordErr: false,
-}
-
 export default function SignIn(props) 
 { 
-    const [validation,setValidation] = useState(initialValidation);
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
 
@@ -63,20 +60,7 @@ export default function SignIn(props)
 
     const dataSubmit = (event) => {
         event.preventDefault();
-        if(validate())
-            props.dataSubmit&&props.dataSubmit();
-    }
-
-    const validate = () => { 
-        return emailValidate()&&passwordValidate();
-    }
-    const emailValidate = (email) => {
-        setValidation({emailErr:true,passwordErr:validation.passwordErr});
-        return true;
-    }
-    const passwordValidate = (password)=> {
-        setValidation({emailErr:validation.emailErr,passwordErr:true});
-        return false;
+        props.dataSubmit&&props.dataSubmit();
     }
 
     const emailChange = (event)=>{
@@ -95,9 +79,9 @@ export default function SignIn(props)
                     <LockOutlinedIcon /> 
                 </Avatar> 
                 <Typography component="h1" variant="h5"> Sign in </Typography> 
-                <form className={classes.form} noValidate onSubmit={dataSubmit}> 
-                    <TextField error={validation.emailErr} value={email} onChange={emailChange} variant="outlined" type="email" margin="normal" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" autoFocus /> 
-                    <TextField error={validation.passwordErr} value={password} onChange={passwordChange} variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" /> 
+                <form className={classes.form} noValidate={false} onSubmit={dataSubmit}> 
+                    <TextField value={email} onChange={emailChange} variant="outlined" type="email" margin="normal" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" autoFocus /> 
+                    <TextField value={password} onChange={passwordChange} variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" /> 
                     <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" /> 
                     <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} > Sign In </Button> 
                     <Container>
