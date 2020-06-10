@@ -12,17 +12,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container'; 
-
-function Copyright() { 
-    return ( 
-    <Typography variant="body2" color="textSecondary" align="center"> 
-    {'Copyright © '} 
-    <Link color="inherit" href="https://material-ui.com/"> Your Website </Link>
-    {' '} 
-    {new Date().getFullYear()} {'.'} 
-    </Typography> 
-    );
-} 
+import {Link as RouterLink} from 'react-router-dom';
+import * as ROUTES from '../../constants/routes';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -85,14 +76,11 @@ export default function SignIn(props)
                     <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" /> 
                     <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} > Sign In </Button> 
                     <Container>
-                        <Link className={classes.link} href="#" variant="body2"> Forgot password? </Link> 
-                        <Link className={classes.link} href="#" variant="body2"> {"Don't have an account? Sign Up"} </Link> 
+                        <Link className={classes.link} component={RouterLink} to={ROUTES.RESET_PASSWORD} variant="body2"> Forgot password? </Link> 
+                        <Link className={classes.link} component={RouterLink} to={ROUTES.SIGN_UP} variant="body2"> {"Don't have an account? Sign Up"} </Link> 
                     </Container>
                 </form> 
             </div> 
-        <Box mt={8}> 
-            <Copyright /> 
-        </Box> 
-    </Container> 
+        </Container> 
     );
 }

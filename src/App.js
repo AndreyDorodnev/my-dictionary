@@ -4,6 +4,7 @@ import NavBar from './components/layout/NavBar';
 import Main from './components/layout/Main';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseLine from '@material-ui/core/CssBaseline';
+import {BrowserRouter as Router} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,10 +23,12 @@ function App() {
 
   return (
     <div id='app' className={classes.root}>
-      <CssBaseLine/>
-      <ButtonAppBar menuBtnClick={toogleMenu}/>
-      <NavBar hide={isMenuHide} toogleMenu={toogleMenu}/>
-      <Main/>
+      <Router>
+        <CssBaseLine/>
+        <ButtonAppBar menuBtnClick={toogleMenu}/>
+        <NavBar hide={isMenuHide} toogleMenu={toogleMenu}/>
+        <Main/>
+      </Router>
     </div>
   );
 }
