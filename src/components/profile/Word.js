@@ -40,14 +40,6 @@ export default props => {
             <CardContent>
                 <Typography className={classes.header} component="h1" variant="h4">{props.word.value}</Typography> 
                 <WordList header="translations:" items={props.word.translations}/>
-                {/* <Typography  component="h1" variant="h5">examples:</Typography>  */}
-                {/* {
-                    props.word.examples.map((element,i)=>{
-                        return (
-                            <Typography key={i} className={classes.text} component="p">{`- ${element}`}</Typography>  
-                        )
-                    }) 
-                } */}
                 <WordList header="examples:" items={props.word.examples}/>
                 <Typography  component="h1" variant="h5">group:</Typography> 
                 <Typography className={classes.text} component="p">{props.word.group}</Typography>  
